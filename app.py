@@ -11,7 +11,7 @@ class GraphData(Resource):
     def get(self, name):
         return get_graph_data(name=name)
 
-api.add(GraphData, '/graph_data/<string:name>')
+api.add_resource(GraphData, '/graph_data/<string:name>')
 
 if __name__ == '__main__':
     app.debug = True
