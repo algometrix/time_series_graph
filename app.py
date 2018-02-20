@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request
 from flask_restful import Resource, Api
 from graph import get_graph_data
+from users import User
 app = Flask(__name__)
 api = Api(app)
 @app.route("/")
@@ -12,8 +13,20 @@ def login():
     if request.method == 'GET':
         return render_template("login.html")
     elif request.method == 'POST':
-        print request
-        print request.form
+        data = request.form
+        username = data['email']
+        password = data['password']
+
+@app.route("/signup", methods = ['GET','POST'] )
+def signup():
+    if request.method == 'GET':
+        return render_template("signup.html")
+    elif request.method == 'POST':
+        data = request.form
+        username = data['email']
+        password = data['password']
+        user = User(username, password)
+        user.save_user()
 
 class GraphData(Resource):
     def get(self, name):

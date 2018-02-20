@@ -5,6 +5,6 @@ class User:
         self.password = password
     
     def save_user(self):
-        
+        db.save_user(self.username, self.password)
 
     
