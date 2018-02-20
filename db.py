@@ -21,12 +21,7 @@ def run_query_sqlite(query):
 
 def save_user(username, password):
     data = (username, password)
-    run_query_sqlite('insert into users(username, password) values(?,?)' , data )
+    run_query_sqlite('insert into users(username, password) values(%s,%s)' % data )
 
 def check_user(username, password):
-
-
-
-    
-
-
+    pass
