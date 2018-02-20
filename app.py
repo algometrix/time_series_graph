@@ -7,6 +7,10 @@ api = Api(app)
 def index():
     return render_template("index.html")
 
+@app.route("/login")
+def login():
+    return render_template("login.html")
+
 class GraphData(Resource):
     def get(self, name):
         return get_graph_data(name=name)
