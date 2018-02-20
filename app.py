@@ -7,13 +7,17 @@ api = Api(app)
 def index():
     return render_template("index.html")
 
-@app.route("/login")
+@app.route("/login", methods = ['GET','POST'] )
 def login():
-    return render_template("login.html")
+    print(request)
+    if request.method == 'GET':
+        return render_template("login.html")
+    elif request.method == 'POST':
+        pass
 
 class GraphData(Resource):
     def get(self, name):
-        return get_graph_data(name=name)
+        return get_graph_data(name=name)           
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 
