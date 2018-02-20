@@ -1,4 +1,4 @@
-from db import get_data_from_db
+from db import get_data_from_influx
 import json
 
 def get_graph_data(**kwargs):
