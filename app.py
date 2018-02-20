@@ -12,7 +12,8 @@ def login():
     if request.method == 'GET':
         return render_template("login.html")
     elif request.method == 'POST':
-        pass
+        print request
+        print request.form
 
 class GraphData(Resource):
     def get(self, name):
