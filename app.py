@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_restful import Resource, Api
 from graph import get_graph_data
 app = Flask(__name__)
@@ -9,7 +9,6 @@ def index():
 
 @app.route("/login", methods = ['GET','POST'] )
 def login():
-    print(request)
     if request.method == 'GET':
         return render_template("login.html")
     elif request.method == 'POST':
