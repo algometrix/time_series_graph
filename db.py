@@ -31,6 +31,6 @@ def user_exists(username, password):
         return False
 
 def get_user(username, password):
-    query = "select username from users where username=? and password=?"
+    query = "select id,username from users where username=? and password=?"
     result = run_query_sqlite(query, username, password)
     return result.fetchone()

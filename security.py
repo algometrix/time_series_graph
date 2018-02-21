@@ -6,7 +6,7 @@ def check_user(username, password):
 
 def authenticate(username, password):
     user = get_user(username, password)
-    return User(user[0],password)
+    return User(user[0],password,id=user[1])
 
 def identity(payload):
     print("Checking identity.")

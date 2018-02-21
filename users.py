@@ -3,7 +3,8 @@ from flask_restful import Resource, Api, reqparse
 from flask import request
 
 class User:
-    def __init__(self, username, password):
+    def __init__(self, username, password, id = None):
+        self.id = id # Needed for Flask JWT
         self.username = username
         self.password = password
     
