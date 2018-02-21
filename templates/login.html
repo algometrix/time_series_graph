@@ -52,8 +52,12 @@
           type:'POST',
           contentType:'application/json'
         }).done(function(data){
-          console.log("POST complete");
-          console.log(data);
+          if(data.hasProperty('access_token')){
+            console.log("User Found");
+          }
+          else{
+            console.log("User Not Found");
+          }
         });
         
       }

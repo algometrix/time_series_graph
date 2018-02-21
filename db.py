@@ -17,7 +17,6 @@ def run_query_sqlite(query, *args):
     c = conn.cursor()
     c.execute(query, args)
     conn.commit()
-    conn.close()
     return c, conn
 
 def save_user(username, password):
