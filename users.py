@@ -18,6 +18,11 @@ class UsersRegister(Resource):
     def post(self):
         username = request.form['username']
         password = request.form['password']
+        print(username)
+        print(password)
+        user = User(username, password)
+        user.save_user()
+        return {'message':'User Created'},201
 
 
 

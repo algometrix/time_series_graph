@@ -20,11 +20,7 @@ def authenticate(username, password):
     return fetch_user(username,password)
 
 def identity(payload):
-    print("Checking identity.")
-    print(payload)
     user_id = payload['identity']
-    print("==========================")
-    print(user_id)
     return fetch_user_by_id(user_id)
 
 
