@@ -17,7 +17,6 @@ def run_query_sqlite(query, *args):
     c = conn.cursor()
     c.execute(query, args)
     conn.commit()
-    conn.close()
     return c
 
 def save_user(username, password):
@@ -30,3 +29,8 @@ def user_exists(username, password):
         return True
     else:
         return False
+
+def get_user(username, password):
+    query = "select username from users where username=? and password=?"
+    result = run_query_sqlite(query, username, password)
+    return result.fetchone()

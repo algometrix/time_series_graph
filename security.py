@@ -1,13 +1,12 @@
 from werkzeug.security import safe_str_cmp
-from db import user_exists
+from db import user_exists, get_user
+from user import User
 def check_user(username, password):
     pass
 
 def authenticate(username, password):
-    if user_exists(username, password):
-        return True
-    else:
-        return False
+    user = get_user(username, password)
+    return User(user[0],password)
 
 def identity(payload):
     print("Checking identity.")
