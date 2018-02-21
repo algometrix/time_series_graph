@@ -39,3 +39,8 @@ def get_user_by_username(username):
     query = "select id,username from users where username=?"
     result = run_query_sqlite(query, username)
     return result.fetchone()
+
+def get_user_by_id(user_id):
+    query = "select id,username from users where id=?"
+    result = run_query_sqlite(query, user_id)
+    return result.fetchone()
