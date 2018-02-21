@@ -3,7 +3,7 @@ from flask_restful import Resource, Api
 from graph import get_graph_data
 from users import User, UsersRegister
 from security import authenticate, identity
-from flash_jwt import JWT, jwt_required
+from flask_jwt import JWT, jwt_required
 
 app = Flask(__name__)
 app.secret_key = 'change_it_later'
