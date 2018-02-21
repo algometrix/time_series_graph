@@ -10,6 +10,8 @@ def authenticate(username, password):
         return False
 
 def identity(payload):
+    print("Checking identity.")
+    print(payload)
     user_id = payload['idenitity']
     print("==========================")
     print(user_id)
