@@ -47,7 +47,7 @@
       login : function(event){
         event.preventDefault();
         $.ajax({
-          url:'/user_create',
+          url:'/auth',
           data : JSON.stringify({'username':this.email,'password':this.password}),
           type:'POST',
           contentType:'application/json'
