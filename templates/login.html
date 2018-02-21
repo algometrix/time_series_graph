@@ -52,7 +52,7 @@
           type:'POST',
           contentType:'application/json'
         }).done(function(data){
-          if(data.hasProperty('access_token')){
+          if(data.hasOwnProperty('access_token')){
             console.log("User Found");
           }
           else{
