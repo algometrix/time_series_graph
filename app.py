@@ -2,8 +2,15 @@ from flask import Flask, render_template, request
 from flask_restful import Resource, Api
 from graph import get_graph_data
 from users import User, UsersRegister
+from security import authenticate, identity
+from flash_jwt import JWT, jwt_required
+
 app = Flask(__name__)
+app.secret_key = 'change_it_later'
 api = Api(app)
+
+jwt =  JWT(app, authenticate, identity)
+
 @app.route("/")
 def index():
     return render_template("index.html")
@@ -29,11 +36,12 @@ def signup():
         user.save_user()
 
 class GraphData(Resource):
+    @jwt_required()
     def get(self, name):
         return get_graph_data(name=name)           
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
-api.add_resource(UsersRegister, '/test')
+api.add_resource(UsersRegister, '/test/')
 
 if __name__ == '__main__':
     app.debug = True
