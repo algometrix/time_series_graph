@@ -24,7 +24,7 @@ def login():
         username = data['email']
         password = data['password']
 
-@app.route("/signup", methods = ['GET','POST'] )
+@app.route("/sign_up", methods = ['GET','POST'] )
 def signup():
     if request.method == 'GET':
         return render_template("signup.html")
@@ -41,7 +41,7 @@ class GraphData(Resource):
         return get_graph_data(name=name)           
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
-api.add_resource(UsersRegister, '/test/')
+api.add_resource(UsersRegister, '/user_create')
 
 if __name__ == '__main__':
     app.debug = True
