@@ -12,9 +12,6 @@ class User:
         db.save_user(self.username, self.password)
 
 class UsersRegister(Resource):
-    args = reqparse.RequestParser()
-    args.add_argument('username')
-    args.add_argument('password')
     def post(self):
         username = request.form['username']
         password = request.form['password']
