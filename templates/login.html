@@ -7,16 +7,16 @@
                       <h3 class="title has-text-grey">Login</h3>
                       <p class="subtitle has-text-grey">Please login to proceed.</p>
                       <div class="box">
-                       <form method="POST">
+                       <form "login-form" v-on:submit="login">
                           <div class="field">
                             <div class="control">
-                              <input name="email" class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                              <input v-model="email" name="email" class="input is-large" type="email" placeholder="Your Email" autofocus="">
                             </div>
                           </div>
             
                           <div class="field">
                             <div class="control">
-                              <input name="password" class="input is-large" type="password" placeholder="Your Password">
+                              <input v-model="password" name="password" class="input is-large" type="password" placeholder="Your Password">
                             </div>
                           </div>
                           <div class="field">
@@ -36,4 +36,28 @@
                 </div>
               </section>
 </div>
+<script>
+  new Vue({
+    el : "#login-form",
+    data : {
+      email : '',
+      password : ''
+    },
+    methods:{
+      login : function(event){
+        event.preventDefault();
+        $.ajax({
+          url:'/user_create',
+          data : JSON.stringify({'username':this.email,'password':this.password}),
+          type:'POST',
+          contentType:'application/json'
+        }).done(function(data){
+          console.log("POST complete");
+          console.log(data);
+        });
+        
+      }
+    }
+  });
+</script>
 {% endblock %}
