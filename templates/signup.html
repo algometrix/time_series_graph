@@ -7,15 +7,15 @@
                       <h3 class="title has-text-grey">Sign Up</h3>
                       <p class="subtitle has-text-grey">Please login to proceed.</p>
                       <div class="box">
-                       <form method="POST">
+                       <form id="form-sign-up" v-on:click="logging">
                           <div class="field">
                             <div class="control">
-                              <input name="email" class="input is-large" type="email" placeholder="Your Email" autofocus="">
+                              <input name="email" class="input is-large" type="email" placeholder="Email" autofocus="">
                             </div>
                           </div>
                           <div class="field">
                             <div class="control">
-                              <input name="password" class="input is-large" type="password" placeholder="Your Password (Password Not Hashed. Use at your own risk)">
+                              <input name="password" class="input is-large" type="password" placeholder="Password (No Hashing)">
                             </div>
                           </div>
                           
@@ -30,4 +30,18 @@
                 </div>
               </section>
 </div>
+<script>
+  new Vue({
+    el : "#form-sign-up",
+    data:{
+      username: '',
+      password: ''
+    },
+    methods: {
+      logging: function(){
+        console.log('username: ', this.username);
+        console.log('password: ', this.password);
+      }
+  }});
+</script>
 {% endblock %}
