@@ -1,6 +1,6 @@
 from werkzeug.security import safe_str_cmp
 from db import user_exists, get_user
-from user import User
+from users import User
 def check_user(username, password):
     pass
 
