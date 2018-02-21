@@ -22,7 +22,7 @@ class UsersRegister(Resource):
         args = parser.parse_args()
         print(args)
         username = args.get('username', None)
-        password = args.form.get('password', None)
+        password = args.get('password', None)
         print(username)
         print(password)
         user = User(username, password)
