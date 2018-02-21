@@ -44,7 +44,7 @@
         console.log('password: ', this.password);
         $.ajax({
           url:'/user_create',
-          data : JSON.stringify(data),
+          data : JSON.stringify({'username':this.email,'password':this.password}),
           type:'POST',
           contentType:'application/json'
         });
