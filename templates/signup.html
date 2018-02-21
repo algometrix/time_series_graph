@@ -10,12 +10,12 @@
                        <form id="form-sign-up" v-on:click="logging">
                           <div class="field">
                             <div class="control">
-                              <input name="email" class="input is-large" type="email" placeholder="Email" autofocus="">
+                              <input v-model="email" name="email" class="input is-large" type="email" placeholder="Email" autofocus="">
                             </div>
                           </div>
                           <div class="field">
                             <div class="control">
-                              <input name="password" class="input is-large" type="password" placeholder="Password (No Hashing)">
+                              <input v-model="password" name="password" class="input is-large" type="password" placeholder="Password (No Hashing)">
                             </div>
                           </div>
                           
@@ -34,12 +34,12 @@
   new Vue({
     el : "#form-sign-up",
     data:{
-      username: '',
+      email: '',
       password: ''
     },
     methods: {
       logging: function(){
-        console.log('username: ', this.username);
+        console.log('email: ', this.email);
         console.log('password: ', this.password);
       }
   }});
