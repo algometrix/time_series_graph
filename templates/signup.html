@@ -7,7 +7,7 @@
                       <h3 class="title has-text-grey">Sign Up</h3>
                       <p class="subtitle has-text-grey">Please login to proceed.</p>
                       <div class="box">
-                       <form id="form-sign-up" v-on:click="logging">
+                       <form id="form-sign-up" v-on:submit="createUser">
                           <div class="field">
                             <div class="control">
                               <input v-model="email" name="email" class="input is-large" type="email" placeholder="Email" autofocus="">
@@ -38,9 +38,15 @@
       password: ''
     },
     methods: {
-      logging: function(){
+      createUser: function(){
         console.log('email: ', this.email);
         console.log('password: ', this.password);
+        $.ajax({
+          url:'/user_create',
+          data : JSON.stringify(data),
+          type:'POST',
+          contentType:'application/json'
+        });
       }
   }});
 </script>
