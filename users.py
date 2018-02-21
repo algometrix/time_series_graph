@@ -15,9 +15,8 @@ class UsersRegister(Resource):
     args.add_argument('username')
     args.add_argument('password')
     def post(self):
-        data = request.form   
-        print(data)
-        return {'data':data}
+        username = request.form['username']
+        password = request.form['password']
 
 
 
