@@ -7,7 +7,7 @@
                       <h3 class="title has-text-grey">Login</h3>
                       <p class="subtitle has-text-grey">Please login to proceed.</p>
                       <div class="box">
-                       <form "login-form" v-on:submit="login($event)">
+                       <form id="login-form" v-on:submit="login($event)">
                           <div class="field">
                             <div class="control">
                               <input v-model="email" name="email" class="input is-large" type="email" placeholder="Your Email" autofocus="">
