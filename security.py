@@ -11,7 +11,7 @@ def authenticate(username, password):
 def identity(payload):
     print("Checking identity.")
     print(payload)
-    user_id = payload['idenitity']
+    user_id = payload['identity']
     print("==========================")
     print(user_id)
     return None
