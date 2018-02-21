@@ -1,7 +1,7 @@
 from flask import Flask, render_template, request
 from flask_restful import Resource, Api
 from graph import get_graph_data
-from users import User
+from users import User, UsersRegister
 app = Flask(__name__)
 api = Api(app)
 @app.route("/")
@@ -33,6 +33,7 @@ class GraphData(Resource):
         return get_graph_data(name=name)           
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
+api.add_resource(UsersRegister, '/test')
 
 if __name__ == '__main__':
     app.debug = True

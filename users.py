@@ -1,4 +1,7 @@
 import db
+from flask_restful import Resource, Api, reqparse
+from flask import request
+
 class User:
     def __init__(self, username, password):
         self.username = username
@@ -6,5 +9,15 @@ class User:
     
     def save_user(self):
         db.save_user(self.username, self.password)
+
+class UsersRegister(Resource):
+    args = reqparse.RequestParser()
+    args.add_argument('username')
+    args.add_argument('password')
+    def post(self):
+        data = UsersRegister.parser.parse_args()        
+        print(data)
+
+
 
     

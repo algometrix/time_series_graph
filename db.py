@@ -12,16 +12,21 @@ def get_data_from_influx(name, time = None):
     client.close()
     return result
 
-def run_query_sqlite(query):
+def run_query_sqlite(query, *args):
     conn = sqlite3.connect('app.db')
     c = conn.cursor()
-    c.execute(query)
+    c.execute(query, args)
+    conn.commit()
     conn.close()
     return c
 
 def save_user(username, password):
-    data = (username, password)
-    run_query_sqlite('insert into users(username, password) values(%s,%s)' % data )
+    run_query_sqlite("insert into users(username, password) values(?,?)" , username, password)
 
-def check_user(username, password):
-    pass
+def user_exists(username, password):
+    query = "select username from users where username=? and password=?"
+    result = run_query_sqlite(query, username, password)
+    if result.fetchone() is not None:
+        return True
+    else:
+        return False
