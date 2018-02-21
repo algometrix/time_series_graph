@@ -7,7 +7,7 @@
                       <h3 class="title has-text-grey">Sign Up</h3>
                       <p class="subtitle has-text-grey">Please login to proceed.</p>
                       <div class="box">
-                       <form id="form-sign-up" v-on:submit="createUser">
+                       <form id="form-sign-up" v-on:submit="createUser($event)">
                           <div class="field">
                             <div class="control">
                               <input v-model="email" name="email" class="input is-large" type="email" placeholder="Email" autofocus="">
@@ -38,7 +38,8 @@
       password: ''
     },
     methods: {
-      createUser: function(){
+      createUser: function(event){
+        event.preventDefault();
         console.log('email: ', this.email);
         console.log('password: ', this.password);
         $.ajax({
