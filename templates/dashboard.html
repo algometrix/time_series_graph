@@ -118,9 +118,9 @@
                 $.ajax({
                     url : '/mapped_graphs',
                     method : 'POST',
-                    data : {'graphName':this.graphName, 'graphSelector':this.graphSelector},
+                    data : JSON.stringify({'graphName':this.graphName, 'graphSelector':this.graphSelector}),
+                    contentType:'application/json',
                     headers: {
-                        'Content': 'application/json',
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
                 });
