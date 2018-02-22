@@ -3,7 +3,7 @@ from flask_restful import Resource, Api
 from graph import get_graph_data, get_all_tables
 from users import User, UsersRegister
 from security import authenticate, identity
-from flask_jwt import JWT, jwt_required
+from flask_jwt import JWT, jwt_required, current_identity
 
 app = Flask(__name__)
 app.secret_key = 'change_it_later'
@@ -41,7 +41,7 @@ def dashboard():
 class GraphData(Resource):
     @jwt_required()
     def get(self, name):
-        print("Requested by " + flask_jwt.current_identity)
+        print("Requested by " + current_identity)
         return jsonify(get_graph_data(name=name))         
 
 class Items(Resource):
