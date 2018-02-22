@@ -96,7 +96,16 @@
                 series: seriesOptions
             });
         }
-
+        
+        var influx_mapper = function(series, data){
+            var _array = [];
+            $.each(data, function(i, value){
+                time = value['time'];
+                graph_value = value['value'];
+                _array.push([time, graph_value])
+            });
+            series.push(_array)
+        }
         $.ajax({
             url : '/graph_data/mem',
             headers : {
@@ -105,9 +114,10 @@
             },
             method : 'GET'
         }).done(function(data){
-            console.log("Completed!");
-            console.log(data);
-            seriesOptions = data;
+            _series = [];
+            influx_mapper(series, data);
+            seriesOptions = series[0];
+            createChart();
         }).fail(function(data){
             console.log("Cannot fetch graph data!");
         });
