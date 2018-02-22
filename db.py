@@ -63,7 +63,7 @@ def get_user_by_id(user_id):
 def save_graph_for_user(user_id, graph_name):
     run_query_sqlite("insert into user_graphs(user_id, graph_name) values(?,?)" , user_id, graph_name)
     query = "select user_id from user_graphs where user_id=? and graph_name=?"
-    result, conn = run_query_sqlite(query, user_id,graph_name)
+    result, conn = run_query_sqlite(query, user_id, graph_name)
     response = result.fetchone()
     conn.close()
     return response[0]
