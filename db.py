@@ -8,7 +8,7 @@ def get_data_from_influx(name, time = None):
     else:
         query_statement = 'select time,value from %s' % (name)
     
-    result = client.query(query_statement)
+    result = client.query(query_statement, epoch='ms')
     client.close()
     return result
 
