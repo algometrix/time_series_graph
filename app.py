@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, Response, jsonify
 from flask_restful import Resource, Api
 from graph import get_graph_data, get_all_tables
 from users import User, UsersRegister
@@ -42,7 +42,8 @@ class GraphData(Resource):
 
 class Items(Resource):
     def get(self):
-        return get_all_tables(),200,'application/json'
+        response = Response(jsonify(get_all_tables()), status=200, mimetype='application/json')
+        return response
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
