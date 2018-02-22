@@ -59,3 +59,19 @@ def get_user_by_id(user_id):
     response = result.fetchone()
     conn.close()
     return response
+
+def save_graph_for_user(user_id, graph_name):
+    run_query_sqlite("insert into user_graphs(user_id, graph_name) values(?,?)" , user_id, graph_name)
+    query = "select user_id from user_graphs where user_id=? and graph_name=?"
+    result, conn = run_query_sqlite(query, user_id,graph_name)
+    response = result.fetchone()
+    conn.close()
+    return response[0]
+
+def save_measurements_for_user(graph_id, measurement):
+    run_query_sqlite("insert into graph_measurements(graph_id, measurement) values(?,?)" , graph_id, measurement)
+    query = "select user_id from graph_measurements where graph_id=? and measurement=?"
+    result, conn = run_query_sqlite(query, graph_id, measurement)
+    response = result.fetchone()
+    conn.close()
+    return response[0]
