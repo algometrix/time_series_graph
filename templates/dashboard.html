@@ -119,6 +119,7 @@
             seriesOptions = [{name:data['name'],data : _series[0] }]
             createChart();
         }).fail(function(data){
+            console.log('data: ', data);
             console.log("Cannot fetch graph data!");
         });
 
