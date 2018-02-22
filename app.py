@@ -42,7 +42,7 @@ class GraphData(Resource):
 
 class Items(Resource):
     def get(self):
-        return get_all_tables()
+        return get_all_tables(),200,'application/json'
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
