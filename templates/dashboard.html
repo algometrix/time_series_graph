@@ -131,7 +131,6 @@
             console.log('data: ', data);
             $.each(data, function (i, value) {
                 measurement_name = value['name'];
-                modal.graphSelector.push(measurement_name);
                 modal.allMeasurements.push(measurement_name);
             });
         });
@@ -139,6 +138,8 @@
 
     var closeModal = function () {
         $('.modal').removeClass('is-active')
+        modal.graphSelector = [];
+        modal.graphName = '';
     }
 
     var seriesOptions = [],
