@@ -19,4 +19,4 @@ def save_user_graph(user_id, graph_name, measurements):
     """
     graph_id = save_graph_for_user(user_id, graph_name)
     for item in measurements:
-        save_measurements_for_user(graph_id, item)
+        save_measurements_for_user(int(graph_id), item)
