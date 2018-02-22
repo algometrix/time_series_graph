@@ -116,7 +116,7 @@
         }).done(function(data){
             _series = [];
             influx_mapper(_series, data['values']);
-            seriesOptions = [{name:data['name'],data : series[0] }]
+            seriesOptions = [{name:data['name'],data : _series[0] }]
             createChart();
         }).fail(function(data){
             console.log("Cannot fetch graph data!");
