@@ -67,17 +67,10 @@
                         <input v-model="graphName" class="input" type="text" placeholder="Graph Name">
                     </div>
                 </div>
-                <div class="field">
+                <div class="field" v-for="(item, index) in graphSelector">
                     <div class="control">
                         <label class="checkbox">
-                            <input v-model="graphSelector" value="Test 1" type="checkbox"> Test 1
-                        </label>
-                    </div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <label class="checkbox">
-                            <input v-model="graphSelector" value="Test 2" type="checkbox"> Test 2
+                            <input v-model="graphSelector" value="item" type="checkbox"> {{ item }}
                         </label>
                     </div>
                 </div>
@@ -131,9 +124,12 @@
             headers: {
                 'Authorization': 'JWT ' + sessionStorage.getItem('Token')
             },
-        }).done(function(data){
+        }).done(function (data) {
             console.log('data: ', data);
-
+            $.each(data, function (i, value) {
+                measurement_name = value['name'];
+                modal.graphSelector.push(measurement_name);
+            });
         });
     });
 
