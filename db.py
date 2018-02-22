@@ -64,7 +64,7 @@ def save_graph_for_user(user_id, graph_name):
     print("User:"+str(user_id))
     print("Graph:"+str(graph_name))
     run_query_sqlite("insert into user_graphs(user_id, graph_name) values(?,?)" , user_id, graph_name)
-    query = "select user_id from user_graphs where user_id=? and graph_name=?"
+    query = "select id from user_graphs where user_id=? and graph_name=?"
     result, conn = run_query_sqlite(query, user_id, graph_name)
     response = result.fetchone()
     conn.close()
@@ -75,7 +75,7 @@ def save_measurements_for_user(graph_id, measurement):
     print("measurement:"+str(measurement
     ))
     run_query_sqlite("insert into graph_measurements(graph_id, measurement) values(?,?)" , graph_id, measurement)
-    query = "select user_id from graph_measurements where graph_id=? and measurement=?"
+    query = "select id from graph_measurements where graph_id=? and measurement=?"
     result, conn = run_query_sqlite(query, graph_id, measurement)
     response = result.fetchone()
     conn.close()
