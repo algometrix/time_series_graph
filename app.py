@@ -35,6 +35,13 @@ def signup():
         user = User(username, password)
         user.save_user()
 
+@app.route('/dashboard', methods = ['GET','POST'])
+def dashboard():
+    if request.method == 'GET':
+        return render_template('dashboard.html')
+    elif request.method == 'POST':
+        pass
+
 class GraphData(Resource):
     @jwt_required()
     def get(self, name):
