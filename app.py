@@ -42,8 +42,7 @@ class GraphData(Resource):
 
 class Items(Resource):
     def get(self):
-        response = Response(jsonify(get_all_tables()), status=200, mimetype='application/json')
-        return response
+        return get_all_tables()
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
