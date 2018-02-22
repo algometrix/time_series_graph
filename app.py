@@ -42,6 +42,7 @@ class GraphData(Resource):
     @jwt_required()
     def get(self, name):
         print("Requested by " + str(current_identity))
+        print(str(current_identity.id))
         return jsonify(get_graph_data(name=name))
         
 class Items(Resource):
