@@ -55,7 +55,7 @@
           if(data.hasOwnProperty('access_token')){
             console.log("User Found");
             sessionStorage.setItem('Token',data['access_token']);
-            window.location.href = "http://www.google.com";
+            window.location.href = window.location.hostname + ':' + window.location.port + '/dashboard'
           }
           else{
             console.log("User Not Found");
