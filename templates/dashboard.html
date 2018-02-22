@@ -68,10 +68,10 @@
                         <input v-model="graphName" class="input" type="text" placeholder="Graph Name">
                     </div>
                 </div>
-                <div class="field" v-for="(item, index) in graphSelector">
+                <div class="field" v-for="item in allMeasurements">
                     <div class="control">
                         <label class="checkbox">
-                            <input v-model="graphSelector" value="{{ item }}" type="checkbox"> {{ index }}
+                            <input v-model="graphSelector" v-bind:value="item" type="checkbox"> {{ item }}
                         </label>
                     </div>
                 </div>
@@ -88,10 +88,12 @@
 
 <script>
     var modal = new Vue({
+        delimiters: ["(((",")))"],
         el: '#modal-form',
         data: {
             graphName: '',
-            graphSelector: []
+            graphSelector: [],
+            allMeasurements:[]
         },
         methods: {
             sendGraph: function (event) {
@@ -130,6 +132,7 @@
             $.each(data, function (i, value) {
                 measurement_name = value['name'];
                 modal.graphSelector.push(measurement_name);
+                modal.allMeasurements.push(measurement_name);
             });
         });
     });
