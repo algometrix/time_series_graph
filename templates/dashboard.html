@@ -60,7 +60,7 @@
             <button onclick="closeModal()" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-            <form id="modal-form" v-on:submit="sendGraph($event)" >
+            <form id="modal-form" v-on:submit="sendGraph($event)">
                 <div class="field">
                     <label class="label">Name</label>
                     <div class="control">
@@ -93,33 +93,25 @@
 
 
 <script>
-    $('#modal-button').on('click', function () {
-        console.log("Modal Button Clicked");
-        $('.modal').addClass('is-active')
-    });
-
-    var closeModal = function () {
-        $('.modal').removeClass('is-active')
-    }
-
-    var seriesOptions = [], seriesCounter = 0
-
-    new Vue({
-        el : '#modal-form',
-        data : {
-            graphName : '',
-            graphSelector : []
+    var modal = new Vue({
+        el: '#modal-form',
+        data: {
+            graphName: '',
+            graphSelector: []
         },
-        methods : {
-            sendGraph : function(event){
+        methods: {
+            sendGraph: function (event) {
                 event.preventDefault();
                 console.log(this.graphName);
                 console.log(this.graphSelector);
                 $.ajax({
-                    url : '/mapped_graphs',
-                    method : 'POST',
-                    data : JSON.stringify({'graphName':this.graphName, 'graphSelector':this.graphSelector}),
-                    contentType:'application/json',
+                    url: '/mapped_graphs',
+                    method: 'POST',
+                    data: JSON.stringify({
+                        'graphName': this.graphName,
+                        'graphSelector': this.graphSelector
+                    }),
+                    contentType: 'application/json',
                     headers: {
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
@@ -127,6 +119,32 @@
             }
         }
     });
+
+
+    $('#modal-button').on('click', function () {
+        console.log("Modal Button Clicked");
+        $('.modal').addClass('is-active')
+        $.ajax({
+            url: '/get_all_tables',
+            method: 'GET',
+            contentType: 'application/json',
+            headers: {
+                'Authorization': 'JWT ' + sessionStorage.getItem('Token')
+            },
+        }).done(function(data){
+            console.log('data: ', data);
+
+        });
+    });
+
+    var closeModal = function () {
+        $('.modal').removeClass('is-active')
+    }
+
+    var seriesOptions = [],
+        seriesCounter = 0
+
+
 
     /**
      * Create the chart when all data is loaded

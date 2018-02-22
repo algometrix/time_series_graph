@@ -52,12 +52,14 @@ class Items(Resource):
 class MappedGraphs(Resource):
     @jwt_required()
     def get(self):
-        pass
+        measurements = get_all_tables()
+        return jsonify(measurements)
     @jwt_required()
     def post(self):
         current_user_id = current_identity.id
         data = request.get_json(silent=True)
-        print(data)
+        graph_name = data['graph_name']
+        measurements = data['measurements']
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
