@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 from flask_restful import Resource, Api
-from graph import get_graph_data
+from graph import get_graph_data, get_all_tables
 from users import User, UsersRegister
 from security import authenticate, identity
 from flask_jwt import JWT, jwt_required
@@ -39,6 +39,10 @@ class GraphData(Resource):
     @jwt_required()
     def get(self, name):
         return get_graph_data(name=name)           
+
+class Items(Resource):
+    def get(self):
+        return get_all_tables()
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')

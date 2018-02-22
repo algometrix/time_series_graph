@@ -12,6 +12,13 @@ def get_data_from_influx(name, time = None):
     client.close()
     return result
 
+def get_measurements_from_influx():
+    client = InfluxDBClient(database='app_db')
+    query_statement = 'show MEASUREMENTS;'
+    result = client.query(query_statement)
+    client.close()
+    return result
+
 def run_query_sqlite(query, *args):
     conn = sqlite3.connect('app.db')
     c = conn.cursor()

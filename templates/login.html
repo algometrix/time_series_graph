@@ -54,6 +54,7 @@
         }).done(function(data){
           if(data.hasOwnProperty('access_token')){
             console.log("User Found");
+            sessionStorage.setItem('Token',data['access_token'])
           }
           else{
             console.log("User Not Found");
