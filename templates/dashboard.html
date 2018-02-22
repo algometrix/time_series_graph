@@ -115,6 +115,15 @@
                 event.preventDefault();
                 console.log(this.graphName);
                 console.log(this.graphSelector);
+                $.ajax({
+                    url : '/mapped_graphs',
+                    method : 'POST',
+                    data : {'graphName':this.graphName, 'graphSelector':this.graphSelector},
+                    headers: {
+                        'Content': 'application/json',
+                        'Authorization': 'JWT ' + sessionStorage.getItem('Token')
+                    },
+                });
             }
         }
     });
