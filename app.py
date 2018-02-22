@@ -45,11 +45,11 @@ def dashboard():
 class GraphData(Resource):
     @jwt_required()
     def get(self, name):
-        return get_graph_data(name=name)           
+        return jsonify(get_graph_data(name=name))         
 
 class Items(Resource):
     def get(self):
-        return get_all_tables()
+        return jsonify(get_all_tables())
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')

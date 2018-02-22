@@ -107,6 +107,9 @@
         }).done(function(data){
             console.log("Completed!");
             console.log(data);
+            seriesOptions = data;
+        }).fail(function(data){
+            console.log("Cannot fetch graph data!");
         });
 
     </script>

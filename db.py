@@ -4,9 +4,9 @@ import sqlite3
 def get_data_from_influx(name, time = None):
     client = InfluxDBClient(database='app_db')
     if time is not None:
-        query_statement = 'select value from %s where time > %s' % (name, time)
+        query_statement = 'select time,value from %s where time > %s' % (name, time)
     else:
-        query_statement = 'select value from %s' % (name)
+        query_statement = 'select time,value from %s' % (name)
     
     result = client.query(query_statement)
     client.close()
