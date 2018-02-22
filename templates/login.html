@@ -54,7 +54,8 @@
         }).done(function(data){
           if(data.hasOwnProperty('access_token')){
             console.log("User Found");
-            sessionStorage.setItem('Token',data['access_token'])
+            sessionStorage.setItem('Token',data['access_token']);
+            window.location.href = "http://www.google.com";
           }
           else{
             console.log("User Not Found");
