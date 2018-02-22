@@ -41,7 +41,7 @@ def dashboard():
 class GraphData(Resource):
     @jwt_required()
     def get(self, name):
-        print("Requested by " + current_identity)
+        print("Requested by " + str(current_identity)
         return jsonify(get_graph_data(name=name))         
 
 class Items(Resource):
