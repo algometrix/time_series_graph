@@ -15,7 +15,7 @@
     <section class="container">
         <div class="columns">
             <div class="column is-3">
-                <a class="button is-primary is-block is-alt is-large" href="#">New Graph</a>
+                <a id="model-button" class="button is-primary is-block is-alt is-large" href="#">New Graph</a>
                 <aside class="menu">
                     <ul class="menu-list">
                         <li>
@@ -57,20 +57,30 @@
         <div class="modal-card">
           <header class="modal-card-head">
             <p class="modal-card-title">Modal title</p>
-            <button class="delete" aria-label="close"></button>
+            <button onclick="closeModal()" class="delete" aria-label="close"></button>
           </header>
           <section class="modal-card-body">
             <!-- Content ... -->
           </section>
           <footer class="modal-card-foot">
             <button class="button is-success">Save changes</button>
-            <button class="button">Cancel</button>
+            <button onclick="closeModal()" class="button">Cancel</button>
           </footer>
         </div>
       </div>
 
-      
+
     <script>
+
+        $('#modal-button').on('click',function(){
+            console.log("Modal Button Clicked");
+            $('.modal').addClass('is-active')
+        });
+
+        var closeModal = function(){
+            $('.modal').removeClass('is-active')
+        }
+
         var seriesOptions = [],
             seriesCounter = 0,
             names = ['MSFT', 'AAPL', 'GOOG'];
