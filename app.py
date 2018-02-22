@@ -56,7 +56,7 @@ class MappedGraphs(Resource):
     @jwt_required()
     def post(self):
         current_user_id = current_identity.id
-        data = request
+        data = request.get_json(silent=True)
         print(data)
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
