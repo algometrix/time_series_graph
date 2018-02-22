@@ -104,8 +104,8 @@
                     url: '/mapped_graphs',
                     method: 'POST',
                     data: JSON.stringify({
-                        'graphName': this.graphName,
-                        'graphSelector': this.graphSelector
+                        'graph_name': this.graphName,
+                        'measurements': this.graphSelector
                     }),
                     contentType: 'application/json',
                     headers: {
@@ -137,8 +137,9 @@
     });
 
     var closeModal = function () {
-        $('.modal').removeClass('is-active')
+        $('.modal').removeClass('is-active');
         modal.graphSelector = [];
+        modal.allMeasurements = [];
         modal.graphName = '';
     }
 
