@@ -62,6 +62,7 @@
         <section class="modal-card-body">
             <form id="modal-form" v-on:submit="sendGraph($event)">
                 <div class="field">
+                    {{ graphName }}
                     <label class="label">Name</label>
                     <div class="control">
                         <input v-model="graphName" class="input" type="text" placeholder="Graph Name">
@@ -70,7 +71,7 @@
                 <div class="field" v-for="(item, index) in graphSelector">
                     <div class="control">
                         <label class="checkbox">
-                            <input v-model="graphSelector" value="item" type="checkbox"> {{ item }}
+                            <input v-model="graphSelector" value="{{ item }}" type="checkbox"> {{ index }}
                         </label>
                     </div>
                 </div>
