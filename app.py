@@ -46,6 +46,7 @@ class Items(Resource):
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
+api.add_resource(Items, '/get_all_tables')
 
 if __name__ == '__main__':
     app.debug = True
