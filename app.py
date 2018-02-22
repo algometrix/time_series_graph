@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response, jsonify
 from flask_restful import Resource, Api
-from graph import get_graph_data, get_all_tables
+from graph import get_graph_data, get_all_tables, save_user_graph
 from users import User, UsersRegister
 from security import authenticate, identity
 from flask_jwt import JWT, jwt_required, current_identity
@@ -50,6 +50,7 @@ class Items(Resource):
         return jsonify(get_all_tables())
 
 class MappedGraphs(Resource):
+    
     @jwt_required()
     def get(self):
         measurements = get_all_tables()
@@ -60,6 +61,9 @@ class MappedGraphs(Resource):
         data = request.get_json(silent=True)
         graph_name = data['graph_name']
         measurements = data['measurements']
+        print(graph_name)
+        print(measurements)
+        save_user_graph(current_user_id, save_user_graph, measurements)
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
