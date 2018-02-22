@@ -63,7 +63,7 @@ class MappedGraphs(Resource):
         measurements = data['measurements']
         print(graph_name)
         print(measurements)
-        save_user_graph(current_user_id, save_user_graph, measurements)
+        save_user_graph(current_user_id, graph_name, measurements)
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')

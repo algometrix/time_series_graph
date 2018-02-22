@@ -72,7 +72,8 @@ def save_graph_for_user(user_id, graph_name):
 
 def save_measurements_for_user(graph_id, measurement):
     print("graph_id:"+str(graph_id))
-    print("measurement:"+str(measurement))
+    print("measurement:"+str(measurement
+    ))
     run_query_sqlite("insert into graph_measurements(graph_id, measurement) values(?,?)" , graph_id, measurement)
     query = "select user_id from graph_measurements where graph_id=? and measurement=?"
     result, conn = run_query_sqlite(query, graph_id, measurement)
