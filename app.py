@@ -49,9 +49,20 @@ class Items(Resource):
     def get(self):
         return jsonify(get_all_tables())
 
+class MappedGraphs(Resource):
+    @jwt_required()
+    def get(self):
+        pass
+    @jwt_required()
+    def post(self):
+        current_user_id = current_identity.id
+        data = request
+        print(data)
+
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
 api.add_resource(Items, '/get_all_tables')
+api.add_resource(MappedGraphs, '/mapped_graphs')
 
 if __name__ == '__main__':
     app.debug = True
