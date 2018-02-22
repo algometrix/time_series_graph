@@ -43,7 +43,7 @@ class GraphData(Resource):
     def get(self, name):
         print("Requested by " + str(current_identity))
         return jsonify(get_graph_data(name=name))
-
+        
 class Items(Resource):
     def get(self):
         return jsonify(get_all_tables())
