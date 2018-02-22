@@ -19,10 +19,6 @@ def index():
 def login():
     if request.method == 'GET':
         return render_template("login.html")
-    elif request.method == 'POST':
-        data = request.form
-        username = data['email']
-        password = data['password']
 
 @app.route("/sign_up", methods = ['GET','POST'] )
 def signup():
@@ -45,6 +41,7 @@ def dashboard():
 class GraphData(Resource):
     @jwt_required()
     def get(self, name):
+        print("Requested by " + flask_jwt.current_identity)
         return jsonify(get_graph_data(name=name))         
 
 class Items(Resource):
