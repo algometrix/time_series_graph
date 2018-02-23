@@ -177,6 +177,18 @@
             },
             loadGraph : function(graph_id){
                 console.log('graph_id: ', graph_id);
+                $.ajax({
+                    url:'/user_graph/' + graph_id,
+                    method : 'GET',
+                    headers: {
+                        'Authorization': 'JWT ' + sessionStorage.getItem('Token')
+                    },
+
+                }).done(function(response){
+                    console.log('response: ', response);
+                }).fail(function(response){
+                    console.log('response: ', response);
+                })
             }
         }
     });
