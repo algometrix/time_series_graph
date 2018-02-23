@@ -19,7 +19,7 @@
             <aside class="menu">
                 <ul id="graph-menu" class="menu-list">
                     <li>
-                        Existing Graphs
+                        <a>Existing Graphs</a>
                     </li>
                     <li v-for="item in allGraphs">
                         <a v-bind:graphid="item[0]" v-on:click="loadGraph(item[0])">((( item[1] )))</a>
