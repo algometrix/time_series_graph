@@ -54,7 +54,8 @@ class MappedGraphs(Resource):
     def get(self):
         current_user_id = current_identity.id
         graphs = get_user_graphs(current_user_id)
-        return jsonify(graphs)
+        items = [{'id':e[0],'name':e[1]} for e in graphs]
+        return jsonify({'graphs':items})
 
     @jwt_required()
     def post(self):
