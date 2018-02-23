@@ -68,9 +68,7 @@ class MappedGraphs(Resource):
         save_user_graph(current_user_id, graph_name, measurements)
 
 class UserGraph(Resource):
-    def get(self):
-        data = request.get_json(silent=True)
-        graph_id = data['graph_id']
+    def get(self, graph_id):
         graphs_data = get_user_graph_data(graph_id)
         print(graphs_data)
         return jsonify(graphs_data)
@@ -79,7 +77,7 @@ api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
 api.add_resource(Items, '/get_all_tables')
 api.add_resource(MappedGraphs, '/mapped_graphs')
-api.add_resource(UserGraph, '/user_graph')
+api.add_resource(UserGraph, '/user_graph/<int:graph_id>')
 
 if __name__ == '__main__':
     app.debug = True
