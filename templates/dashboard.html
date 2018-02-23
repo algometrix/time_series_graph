@@ -123,7 +123,7 @@
                     console.log('response: ', response);
                     console.log("Graph fetch complete");
                     $.each(response['graphs'], function(i, value){
-                        graph_menu.allGraphs.push(value); // this.allGraphs.push(value) didn't work so using variable name
+                        graph_menu.allGraphs.push(value['name']); // this.allGraphs.push(value) didn't work so using variable name
                     });
                 }).fail(function(response){
                     console.log('response: ', response);
