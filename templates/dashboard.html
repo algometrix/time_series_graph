@@ -18,8 +18,11 @@
             <a id="modal-button" class="button is-primary is-block is-alt is-large" href="#">New Graph</a>
             <aside class="menu">
                 <ul id="graph-menu" class="menu-list">
+                    <li>
+                        Existing Graphs
+                    </li>
                     <li v-for="item in allGraphs">
-                        <a v-bind:graphid="item[0]">((( item[1] )))</a>
+                        <a v-bind:graphid="item[0]" v-on:click="loadGraph(item[0])">((( item[1] )))</a>
                     </li>
                 </ul>
             </aside>
@@ -72,6 +75,47 @@
 
 
 <script>
+    /**
+     * Create the chart when all data is loaded
+     * @returns {undefined}
+     */
+     function createChart() {
+        Highcharts.stockChart('container', {
+
+            rangeSelector: {
+                selected: 4
+            },
+
+            yAxis: {
+                labels: {
+                    formatter: function () {
+                        return (this.value > 0 ? ' + ' : '') + this.value + '%';
+                    }
+                },
+                plotLines: [{
+                    value: 0,
+                    width: 2,
+                    color: 'silver'
+                }]
+            },
+
+            plotOptions: {
+                series: {
+                    compare: 'percent',
+                    showInNavigator: true
+                }
+            },
+
+            tooltip: {
+                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
+                valueDecimals: 2,
+                split: true
+            },
+
+            series: seriesOptions
+        });
+    }
+
     var modal = new Vue({
         delimiters: ["(((", ")))"],
         el: '#modal-form',
@@ -130,6 +174,9 @@
                     console.log('response: ', response);
                     console.log("No graphs for you");
                 });
+            },
+            loadGraph = function(graph_id){
+                console.log('graph_id: ', graph_id);
             }
         }
     });
@@ -167,46 +214,7 @@
 
 
 
-    /**
-     * Create the chart when all data is loaded
-     * @returns {undefined}
-     */
-    function createChart() {
-        Highcharts.stockChart('container', {
-
-            rangeSelector: {
-                selected: 4
-            },
-
-            yAxis: {
-                labels: {
-                    formatter: function () {
-                        return (this.value > 0 ? ' + ' : '') + this.value + '%';
-                    }
-                },
-                plotLines: [{
-                    value: 0,
-                    width: 2,
-                    color: 'silver'
-                }]
-            },
-
-            plotOptions: {
-                series: {
-                    compare: 'percent',
-                    showInNavigator: true
-                }
-            },
-
-            tooltip: {
-                pointFormat: '<span style="color:{series.color}">{series.name}</span>: <b>{point.y}</b> ({point.change}%)<br/>',
-                valueDecimals: 2,
-                split: true
-            },
-
-            series: seriesOptions
-        });
-    }
+    
 
     var influx_mapper = function (series, data) {
         var _array = [];
