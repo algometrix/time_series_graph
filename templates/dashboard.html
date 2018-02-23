@@ -72,6 +72,35 @@
 
 
 <script>
+    var modal = new Vue({
+        delimiters: ["(((", ")))"],
+        el: '#modal-form',
+        data: {
+            graphName: '',
+            graphSelector: [],
+            allMeasurements: []
+        },
+        methods: {
+            sendGraph: function (event) {
+                event.preventDefault();
+                console.log(this.graphName);
+                console.log(this.graphSelector);
+                $.ajax({
+                    url: '/mapped_graphs',
+                    method: 'POST',
+                    data: JSON.stringify({
+                        'graph_name': this.graphName,
+                        'measurements': this.graphSelector
+                    }),
+                    contentType: 'application/json',
+                    headers: {
+                        'Authorization': 'JWT ' + sessionStorage.getItem('Token')
+                    },
+                });
+            }
+        }
+    });
+
     var graph_menu = new Vue({
         delimiters: ["(((", ")))"],
         el: '#graph-menu',
@@ -98,34 +127,6 @@
                     });
                 }).fail(function(data){
                     console.log("No graphs for you");
-                });
-            }
-        }
-    });
-    var modal = new Vue({
-        delimiters: ["(((", ")))"],
-        el: '#modal-form',
-        data: {
-            graphName: '',
-            graphSelector: [],
-            allMeasurements: []
-        },
-        methods: {
-            sendGraph: function (event) {
-                event.preventDefault();
-                console.log(this.graphName);
-                console.log(this.graphSelector);
-                $.ajax({
-                    url: '/mapped_graphs',
-                    method: 'POST',
-                    data: JSON.stringify({
-                        'graph_name': this.graphName,
-                        'measurements': this.graphSelector
-                    }),
-                    contentType: 'application/json',
-                    headers: {
-                        'Authorization': 'JWT ' + sessionStorage.getItem('Token')
-                    },
                 });
             }
         }
