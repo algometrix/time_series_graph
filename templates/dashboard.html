@@ -79,7 +79,7 @@
             graphName: '',
             graphSelector: [],
             allMeasurements: [],
-            test:[]
+            test: []
         },
         methods: {
             sendGraph: function (event) {
@@ -108,18 +108,19 @@
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
 
-                }).done(function(response){
+                }).done(function (response) {
                     console.log('response: ', response);
                     console.log("Graph fetch complete");
-                    $.each(response['graphs'], function(i, value){
+                    $.each(response['graphs'], function (i, value) {
                         console.log('value: ', value);
                         console.log('this.allGraphs: ', this.test);
                         this.test.push(value);
                     });
-                }).fail(function(response){
+                }).fail(function (response) {
                     console.log('response: ', response);
                     console.log("No graphs for you");
                 });
+            }
         }
     });
 
@@ -128,7 +129,7 @@
         el: '#graph-menu',
         data: {
             allGraphs: [],
-            dummy : ''
+            dummy: ''
         },
         methods: {
             getGraphs: function () {
@@ -140,15 +141,15 @@
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
 
-                }).done(function(response){
+                }).done(function (response) {
                     console.log('response: ', response);
                     console.log("Graph fetch complete");
-                    $.each(response['graphs'], function(i, value){
+                    $.each(response['graphs'], function (i, value) {
                         console.log('value: ', value);
                         console.log('this.allGraphs: ', this.allGraphs);
                         this.allGraphs.push(value);
                     });
-                }).fail(function(response){
+                }).fail(function (response) {
                     console.log('response: ', response);
                     console.log("No graphs for you");
                 });
