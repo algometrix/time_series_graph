@@ -91,16 +91,13 @@
                 }).done(function(data){
                     console.log('data: ', data);
                     console.log("Graph fetch complete");
-                    $.each(data[graphs], function(i, value){
+                    $.each(data['graphs'], function(i, value){
                         this.allGraphs.push(value);
                     });
                 }).fail(function(data){
                     console.log("No graphs for you");
                 });
             }
-        },
-        mounted: function () {
-            this.getGraphs();
         }
     });
 
