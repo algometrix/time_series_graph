@@ -76,7 +76,8 @@
         delimiters: ["(((", ")))"],
         el: '#graph-menu',
         data: {
-            allGraphs: []
+            allGraphs: [],
+            dummy : ''
         },
         methods: {
             getGraphs: function () {
@@ -99,12 +100,8 @@
                     console.log("No graphs for you");
                 });
             }
-        },
-        mounted:function(){
-            this.getGraphs();
         }
     });
-
     var modal = new Vue({
         delimiters: ["(((", ")))"],
         el: '#modal-form',
