@@ -1,4 +1,5 @@
-from db import get_data_from_influx, get_measurements_from_influx, save_graph_for_user, save_measurements_for_user, get_user_graphs_from_db
+from db import (get_data_from_influx, get_measurements_from_influx, save_graph_for_user, 
+                save_measurements_for_user, get_user_graphs_from_db,get_graph_measurements_from_db)
 import json
 
 def get_graph_data(**kwargs):
@@ -25,3 +26,9 @@ def get_user_graphs(user_id):
     graphs = get_user_graphs_from_db(user_id)
     print(graphs)
     return list(graphs)
+
+def get_user_graph_data(graph_id):
+    #TODO Check if the graph_id is mapped to the current user
+    measurements = get_graph_measurements_from_db(graph_id)
+    print(measurements)
+    return measurements

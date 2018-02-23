@@ -86,3 +86,10 @@ def get_user_graphs_from_db(user_id):
     response = result.fetchall()
     conn.close()
     return response
+
+def get_graph_measurements_from_db(graph_id):
+    query = "select measurement from graph_measurements where graph_id=?"
+    result, conn = run_query_sqlite(query, graph_id)
+    response = result.fetchall()
+    conn.close()
+    return response
