@@ -71,7 +71,7 @@ class UserGraph(Resource):
     def get(self, graph_id):
         graphs_data = get_user_graph_data(graph_id)
         print(graphs_data)
-        return {'graphs':jsonify(graphs_data)}
+        return {'graphs':graphs_data}
 
 api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')

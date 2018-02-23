@@ -79,7 +79,7 @@
      * Create the chart when all data is loaded
      * @returns {undefined}
      */
-     function createChart() {
+    function createChart() {
         Highcharts.stockChart('container', {
 
             rangeSelector: {
@@ -123,7 +123,7 @@
             graphName: '',
             graphSelector: [],
             allMeasurements: [],
-            test:[]
+            test: []
         },
         methods: {
             sendGraph: function (event) {
@@ -151,7 +151,7 @@
         el: '#graph-menu',
         data: {
             allGraphs: [],
-            dummy : ''
+            dummy: ''
         },
         methods: {
             getGraphs: function () {
@@ -163,30 +163,41 @@
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
 
-                }).done(function(response){
+                }).done(function (response) {
                     console.log('response: ', response);
                     console.log("Graph fetch complete");
-                    $.each(response['graphs'], function(i, value){
-                        graph_menu.allGraphs.push( [ value['id'],value['name'] ] );
+                    $.each(response['graphs'], function (i, value) {
+                        graph_menu.allGraphs.push([value['id'], value['name']]);
                         //graph_menu.allGraphs.push(value['name']); // this.allGraphs.push(value) didn't work so using variable name
                     });
-                }).fail(function(response){
+                }).fail(function (response) {
                     console.log('response: ', response);
                     console.log("No graphs for you");
                 });
             },
-            loadGraph : function(graph_id){
+            loadGraph: function (graph_id) {
                 console.log('graph_id: ', graph_id);
                 $.ajax({
-                    url:'/user_graph/' + graph_id,
-                    method : 'GET',
+                    url: '/user_graph/' + graph_id,
+                    method: 'GET',
                     headers: {
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
 
-                }).done(function(response){
+                }).done(function (response) {
                     console.log('response: ', response);
-                }).fail(function(response){
+                    graphs = response['graphs'];
+                    $.each(graphs, function (i, value) {
+                        console.log('value: ', value);
+                        _series = [];
+                        influx_mapper(_series, value['values']);
+                        seriesOptions = [{
+                            name: value['name'],
+                            data: _series[0]
+                        }]
+                        createChart();
+                    });
+                }).fail(function (response) {
                     console.log('response: ', response);
                 })
             }
@@ -226,7 +237,7 @@
 
 
 
-    
+
 
     var influx_mapper = function (series, data) {
         var _array = [];
