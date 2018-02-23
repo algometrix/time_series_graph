@@ -29,6 +29,7 @@ def get_user_graphs(user_id):
 
 def get_user_graph_data(graph_id):
     #TODO Check if the graph_id is mapped to the current user
-    measurements = get_graph_measurements_from_db(graph_id)
+    graph_mem = get_graph_measurements_from_db(graph_id)
+    measurements = [el[0] for el in graph_mem]
     print(measurements)
     return measurements
