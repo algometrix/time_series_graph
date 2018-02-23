@@ -186,6 +186,7 @@
 
                 }).done(function (response) {
                     console.log('response: ', response);
+                    seriesOptions = [];
                     graphs = response['graphs'];
                     $.each(graphs, function (i, value) {
                         console.log('value: ', value);
