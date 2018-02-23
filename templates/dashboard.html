@@ -76,7 +76,7 @@
         delimiters: ["(((", ")))"],
         el: '#graph-menu',
         data: {
-            allGraphs: ''
+            allGraphs: []
         },
         methods: {
             getGraphs: function () {
@@ -91,7 +91,7 @@
                 }).done(function(data){
                     console.log('data: ', data);
                     console.log("Graph fetch complete");
-                    $.each(data, function(i, value){
+                    $.each(data[graphs], function(i, value){
                         this.allGraphs.push(value);
                     });
                 }).fail(function(data){
