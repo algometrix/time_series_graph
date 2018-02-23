@@ -165,7 +165,6 @@
 
                 }).done(function (response) {
                     console.log('response: ', response);
-                    console.log("Graph fetch complete");
                     $.each(response['graphs'], function (i, value) {
                         graph_menu.allGraphs.push([value['id'], value['name']]);
                         //graph_menu.allGraphs.push(value['name']); // this.allGraphs.push(value) didn't work so using variable name
@@ -176,7 +175,6 @@
                 });
             },
             loadGraph: function (graph_id) {
-                console.log('graph_id: ', graph_id);
                 $.ajax({
                     url: '/user_graph/' + graph_id,
                     method: 'GET',
@@ -185,11 +183,9 @@
                     },
 
                 }).done(function (response) {
-                    console.log('response: ', response);
                     seriesOptions = [];
                     graphs = response['graphs'];
                     $.each(graphs, function (i, value) {
-                        console.log('value: ', value);
                         _series = [];
                         influx_mapper(_series, value['values']);
                         seriesOptions.push({
@@ -208,7 +204,6 @@
     graph_menu.getGraphs();
 
     $('#modal-button').on('click', function () {
-        console.log("Modal Button Clicked");
         $('.modal').addClass('is-active')
         $.ajax({
             url: '/get_all_tables',
@@ -218,7 +213,6 @@
                 'Authorization': 'JWT ' + sessionStorage.getItem('Token')
             },
         }).done(function (data) {
-            console.log('data: ', data);
             $.each(data, function (i, value) {
                 measurement_name = value['name'];
                 modal.allMeasurements.push(measurement_name);
