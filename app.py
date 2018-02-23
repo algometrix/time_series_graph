@@ -68,7 +68,6 @@ class MappedGraphs(Resource):
         save_user_graph(current_user_id, graph_name, measurements)
 
 class UserGraph(Resource):
-    @jwt_required
     def get():
         data = request.get_json(silent=True)
         graph_id = data['graph_id']
@@ -80,6 +79,7 @@ api.add_resource(GraphData, '/graph_data/<string:name>')
 api.add_resource(UsersRegister, '/user_create')
 api.add_resource(Items, '/get_all_tables')
 api.add_resource(MappedGraphs, '/mapped_graphs')
+api.add_resource(UserGraph, '/user_graph')
 
 if __name__ == '__main__':
     app.debug = True
