@@ -63,14 +63,12 @@ class MappedGraphs(Resource):
         data = request.get_json(silent=True)
         graph_name = data['graph_name']
         measurements = data['measurements']
-        print(graph_name)
-        print(measurements)
         save_user_graph(current_user_id, graph_name, measurements)
 
 class UserGraph(Resource):
+    @jwt_required
     def get(self, graph_id):
         graphs_data = get_user_graph_data(graph_id)
-        print(graphs_data)
         return {'graphs':graphs_data}
 
 api.add_resource(GraphData, '/graph_data/<string:name>')

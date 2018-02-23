@@ -40,5 +40,4 @@ def get_user_graph_data(graph_id):
     graph_mem = get_graph_measurements_from_db(graph_id)
     measurements = [el[0] for el in graph_mem]
     data = get_mesurements(measurements)
-    print(data)
     return data
