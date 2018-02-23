@@ -23,4 +23,5 @@ def save_user_graph(user_id, graph_name, measurements):
 
 def get_user_graphs(user_id):
     graphs = get_user_graphs_from_db(user_id)
+    print(graphs)
     return list(graphs)
