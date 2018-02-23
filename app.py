@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, Response, jsonify
 from flask_restful import Resource, Api
-from graph import get_graph_data, get_all_tables, save_user_graph
+from graph import get_graph_data, get_all_tables, save_user_graph, get_user_graphs
 from users import User, UsersRegister
 from security import authenticate, identity
 from flask_jwt import JWT, jwt_required, current_identity
@@ -50,11 +50,12 @@ class Items(Resource):
         return jsonify(get_all_tables())
 
 class MappedGraphs(Resource):
-    
     @jwt_required()
     def get(self):
-        measurements = get_all_tables()
-        return jsonify(measurements)
+        current_user_id = current_identity.id
+        graphs = get_user_graphs(current_user_id)
+        return jsonify(graphs)
+
     @jwt_required()
     def post(self):
         current_user_id = current_identity.id
