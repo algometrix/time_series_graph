@@ -16,13 +16,13 @@
     <div class="columns">
         <div class="column is-3">
             <a id="modal-button" class="button is-primary is-block is-alt is-large" href="#">New Graph</a>
-            <id="graph-menu" aside class="menu">
+            <id="graph-menu" aside class="menu" v-on:load="getGraphs()">
                 <ul class="menu-list">
                     <li v-for="item in allGraphs">
                         <a>((( item )))</a>
                     </li>
                 </ul>
-                </id>
+            </id>
 
         </div>
 
