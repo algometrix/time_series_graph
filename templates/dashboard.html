@@ -19,7 +19,7 @@
             <aside class="menu">
                 <ul id="graph-menu" class="menu-list">
                     <li v-for="item in allGraphs">
-                        <a>((( item )))</a>
+                        <a>((( item[1] )))</a>
                     </li>
                 </ul>
             </aside>
@@ -41,7 +41,7 @@
     <div class="modal-background"></div>
     <div class="modal-card">
         <header class="modal-card-head">
-            <p class="modal-card-title">Modal title</p>
+            <p class="modal-card-title">Create Graph</p>
             <button onclick="closeModal()" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
@@ -123,7 +123,8 @@
                     console.log('response: ', response);
                     console.log("Graph fetch complete");
                     $.each(response['graphs'], function(i, value){
-                        graph_menu.allGraphs.push(value['name']); // this.allGraphs.push(value) didn't work so using variable name
+                        graph_menu.allGraphs.push( [ value['id'],value['name'] ] );
+                        //graph_menu.allGraphs.push(value['name']); // this.allGraphs.push(value) didn't work so using variable name
                     });
                 }).fail(function(response){
                     console.log('response: ', response);
@@ -133,6 +134,7 @@
         }
     });
 
+    graph_menu.getGraphs();
 
     $('#modal-button').on('click', function () {
         console.log("Modal Button Clicked");
