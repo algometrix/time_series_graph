@@ -42,13 +42,13 @@
 
 <div class="modal">
     <div class="modal-background"></div>
-    <div class="modal-card">
+    <div id="modal-form" class="modal-card">
         <header class="modal-card-head">
             <p class="modal-card-title">Create Graph</p>
             <button onclick="closeModal()" class="delete" aria-label="close"></button>
         </header>
         <section class="modal-card-body">
-            <form id="modal-form" v-on:submit="sendGraph($event)">
+            <form >
                 <div class="field">
                     {{ graphName }}
                     <label class="label">Name</label>
@@ -63,11 +63,10 @@
                         </label>
                     </div>
                 </div>
-                <button class="button is-block is-info is-large is-fullwidth">Submit</button>
             </form>
         </section>
         <footer class="modal-card-foot">
-            <button class="button is-success">Save changes</button>
+            <button v-on:click="sendGraph($event)" class="button is-success">Save changes</button>
             <button onclick="closeModal()" class="button">Cancel</button>
         </footer>
     </div>
