@@ -80,7 +80,7 @@ def save_measurements_for_user(graph_id, measurement):
     conn.close()
     return response[0]
 
-def get_user_graphs(user_id):
+def get_user_graphs_from_db(user_id):
     query = "select id,graph_name from user_graphs where user_id=??"
     result, conn = run_query_sqlite(query, user_id)
     response = result.fetchone()

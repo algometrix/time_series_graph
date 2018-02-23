@@ -1,4 +1,4 @@
-from db import get_data_from_influx, get_measurements_from_influx, save_graph_for_user, save_measurements_for_user
+from db import get_data_from_influx, get_measurements_from_influx, save_graph_for_user, save_measurements_for_user, get_user_graphs_from_db
 import json
 
 def get_graph_data(**kwargs):
@@ -22,5 +22,5 @@ def save_user_graph(user_id, graph_name, measurements):
         save_measurements_for_user(int(graph_id), item)
 
 def get_user_graphs(user_id):
-    graphs = get_user_graphs(user_id)
+    graphs = get_user_graphs_from_db(user_id)
     return list(graphs)[0]
