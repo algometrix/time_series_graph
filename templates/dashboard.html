@@ -16,8 +16,8 @@
     <div class="columns">
         <div class="column is-3">
             <a id="modal-button" class="button is-primary is-block is-alt is-large" href="#">New Graph</a>
-            <aside id="graph-menu" class="menu" v-on:load="getGraphs()">
-                <ul class="menu-list">
+            <aside class="menu">
+                <ul id="graph-menu" class="menu-list">
                     <li v-for="item in allGraphs">
                         <a>((( item )))</a>
                     </li>
