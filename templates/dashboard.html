@@ -123,6 +123,9 @@
             dummy: ''
         },
         methods: {
+            resetMenu : function(){
+                this.allGraphs = [];
+            },
             getGraphs: function () {
                 $.ajax({
                     url: '/mapped_graphs',
@@ -196,6 +199,7 @@
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
                 }).done(function(data){
+                    graph_menu.resetMenu();
                     graph_menu.getGraphs();
                     closeModal();
                 }).fail(function(data){
