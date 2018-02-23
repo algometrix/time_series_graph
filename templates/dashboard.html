@@ -16,28 +16,13 @@
     <div class="columns">
         <div class="column is-3">
             <a id="modal-button" class="button is-primary is-block is-alt is-large" href="#">New Graph</a>
-            <aside class="menu">
+            <id="graph-menu" aside class="menu">
                 <ul class="menu-list">
-                    <li>
-                        <a>Dashboard</a>
-                    </li>
-                    <li>
-                        <a>Customers</a>
-                    </li>
-                    <li>
-                        <a>Authentication</a>
-                    </li>
-                    <li>
-                        <a>Payments</a>
-                    </li>
-                    <li>
-                        <a>Transfers</a>
-                    </li>
-                    <li>
-                        <a>Balance</a>
+                    <li v-for="item in allGraphs">
+                        <a>((( item )))</a>
                     </li>
                 </ul>
-            </aside>
+                </id>
 
         </div>
 
@@ -87,13 +72,45 @@
 
 
 <script>
+    var graph_menu = new Vue({
+        delimiters: ["(((", ")))"],
+        el: '#graph-menu',
+        data: {
+            allGraphs: ''
+        },
+        methods: {
+            getGraphs: function () {
+                $.ajax({
+                    url: '/mapped_graphs',
+                    method: 'GET',
+                    contentType: 'application/json',
+                    headers: {
+                        'Authorization': 'JWT ' + sessionStorage.getItem('Token')
+                    },
+
+                }).done(function(data){
+                    console.log('data: ', data);
+                    console.log("Graph fetch complete");
+                    $.each(data, function(i, value){
+                        this.allGraphs.push(value);
+                    });
+                }).fail(function(data){
+                    console.log("No graphs for you");
+                });
+            }
+        },
+        mounted: function () {
+            this.getGraphs();
+        }
+    });
+
     var modal = new Vue({
-        delimiters: ["(((",")))"],
+        delimiters: ["(((", ")))"],
         el: '#modal-form',
         data: {
             graphName: '',
             graphSelector: [],
-            allMeasurements:[]
+            allMeasurements: []
         },
         methods: {
             sendGraph: function (event) {
