@@ -27,9 +27,18 @@ def get_user_graphs(user_id):
     print(graphs)
     return list(graphs)
 
+def get_mesurements(measurement_names):
+    graph_data = []
+    for mem in measurement_names:
+        data = get_graph_data(name = mem)
+        graph_data.append(data)
+    
+    return graph_data
+
 def get_user_graph_data(graph_id):
     #TODO Check if the graph_id is mapped to the current user
     graph_mem = get_graph_measurements_from_db(graph_id)
     measurements = [el[0] for el in graph_mem]
-    print(measurements)
-    return measurements
+    data = get_mesurements(measurements)
+    print(data)
+    return data
