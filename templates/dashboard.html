@@ -78,7 +78,8 @@
         data: {
             graphName: '',
             graphSelector: [],
-            allMeasurements: []
+            allMeasurements: [],
+            test:[]
         },
         methods: {
             sendGraph: function (event) {
@@ -97,7 +98,28 @@
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
                 });
-            }
+            },
+            getGraphs: function () {
+                $.ajax({
+                    url: '/user_graphs',
+                    method: 'GET',
+                    contentType: 'application/json',
+                    headers: {
+                        'Authorization': 'JWT ' + sessionStorage.getItem('Token')
+                    },
+
+                }).done(function(response){
+                    console.log('response: ', response);
+                    console.log("Graph fetch complete");
+                    $.each(response['graphs'], function(i, value){
+                        console.log('value: ', value);
+                        console.log('this.allGraphs: ', this.test);
+                        this.test.push(value);
+                    });
+                }).fail(function(response){
+                    console.log('response: ', response);
+                    console.log("No graphs for you");
+                });
         }
     });
 
@@ -111,21 +133,23 @@
         methods: {
             getGraphs: function () {
                 $.ajax({
-                    url: '/mapped_graphs',
+                    url: '/user_graphs',
                     method: 'GET',
                     contentType: 'application/json',
                     headers: {
                         'Authorization': 'JWT ' + sessionStorage.getItem('Token')
                     },
 
-                }).done(function(data){
-                    console.log('data: ', data);
+                }).done(function(response){
+                    console.log('response: ', response);
                     console.log("Graph fetch complete");
-                    $.each(data['graphs'], function(i, value){
+                    $.each(response['graphs'], function(i, value){
                         console.log('value: ', value);
+                        console.log('this.allGraphs: ', this.allGraphs);
                         this.allGraphs.push(value);
                     });
-                }).fail(function(data){
+                }).fail(function(response){
+                    console.log('response: ', response);
                     console.log("No graphs for you");
                 });
             }
