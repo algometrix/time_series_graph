@@ -50,8 +50,7 @@ class Items(Resource):
         return jsonify(get_all_tables())
 
 class MappedGraphs(Resource):
-    
-    ma@jwt_required()
+    @jwt_required()
     def get(self):
         current_user_id = current_identity.id
         graphs = get_user_graphs(current_user_id)
