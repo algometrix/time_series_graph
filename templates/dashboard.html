@@ -191,10 +191,10 @@
                         console.log('value: ', value);
                         _series = [];
                         influx_mapper(_series, value['values']);
-                        seriesOptions = [{
+                        seriesOptions.push({
                             name: value['name'],
                             data: _series[0]
-                        }]
+                        });
                         createChart();
                     });
                 }).fail(function (response) {
